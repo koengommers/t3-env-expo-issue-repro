@@ -1,50 +1,37 @@
-# Welcome to your Expo app 👋
+# T3 env in React Native issue
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Importing @t3-oss/env-core gives an error, because support for Package Exports is disabled by default in Metro:
 
-## Get started
+```
+Metro has encountered an error: While trying to resolve module `@t3-oss/env-core` from file `/Users/koengommers/dev/test-t3-env/env.ts`, the package `/Users/koengommers/dev/test-t3-env/node_modules/@t3-oss/env-core/package.json` was successfully found. However, this package itself specifies a `main` module field that could not be resolved (`/Users/koengommers/dev/test-t3-env/node_modules/@t3-oss/env-core/index`. Indeed, none of these files exist:
 
-1. Install dependencies
+  * /Users/koengommers/dev/test-t3-env/node_modules/@t3-oss/env-core/index(.ios.ts|.native.ts|.ts|.ios.tsx|.native.tsx|.tsx|.ios.mjs|.native.mjs|.mjs|.ios.js|.native.js|.js|.ios.jsx|.native.jsx|.jsx|.ios.json|.native.json|.json|.ios.cjs|.native.cjs|.cjs|.ios.scss|.native.scss|.scss|.ios.sass|.native.sass|.sass|.ios.css|.native.css|.css)
+  * /Users/koengommers/dev/test-t3-env/node_modules/@t3-oss/env-core/index/index(.ios.ts|.native.ts|.ts|.ios.tsx|.native.tsx|.tsx|.ios.mjs|.native.mjs|.mjs|.ios.js|.native.js|.js|.ios.jsx|.native.jsx|.jsx|.ios.json|.native.json|.json|.ios.cjs|.native.cjs|.cjs|.ios.scss|.native.scss|.scss|.ios.sass|.native.sass|.sass|.ios.css|.native.css|.css): /Users/koengommers/dev/test-t3-env/node_modules/metro/src/node-haste/DependencyGraph.js (247:17)
 
-   ```bash
-   npm install
-   ```
+  245 |         }
+  246 |         if (error instanceof InvalidPackageError) {
+> 247 |           throw new PackageResolutionError({
+      |                 ^
+  248 |             packageError: error,
+  249 |             originModulePath: from,
+  250 |             targetModuleName: to,
 
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+RCTFatal
+__28-[RCTCxxBridge handleError:]_block_invoke
+_dispatch_call_block_and_release
+_dispatch_client_callout
+_dispatch_main_queue_drain
+_dispatch_main_queue_callback_4CF
+__CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
+__CFRunLoopRun
+CFRunLoopRunSpecific
+GSEventRunModal
+-[UIApplication _run]
+UIApplicationMain
+main
+start_sim
+0x0
+0x0
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+![Screenshot](./screenshot.png)
